@@ -1,0 +1,21 @@
+services:
+  db:
+    image: postgres:16
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+    environment:
+      POSTGRES_USER: erp_user
+      POSTGRES_PASSWORD: 1234567
+      POSTGRES_DB: dev
+
+volumes:
+  pg_data:
+
+networks:
+  app-network:
+    driver: bridge
