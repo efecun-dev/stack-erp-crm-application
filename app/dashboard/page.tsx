@@ -1,5 +1,7 @@
-import Sidebar from "@/components/ui/Sidebar";
+import Sidebar from "@/components/layout/Sidebar";
 import { Metadata } from "next";
+import MainContainer from "@/components/layout/MainContainer";
+import DashHeader from "@/components/dashboard/DashHeader";
 
 export const metadata: Metadata = {
   title: "Stack | Dashboard",
@@ -10,8 +12,11 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      <main className="w-full max-h-screen h-screen p-4 overflow-hidden flex items-start gap-10">
+      <main className="w-full min-h-screen overflow-hidden flex items-start">
         <Sidebar />
+        <MainContainer>
+          <DashHeader />
+        </MainContainer>
       </main>
     </>
   );
