@@ -16,7 +16,7 @@ export default function ProgressBar({ header, color, percent }: Props) {
         ) : (
           ""
         )}
-        <div className="w-full h-1.5 rounded-full bg-gray-200 relative">
+        <div className="w-full h-1.5 rounded-full bg-gray-300/20 relative">
           <div
             style={{ width: percent + "%", backgroundColor: color }}
             className="h-full rounded-full"

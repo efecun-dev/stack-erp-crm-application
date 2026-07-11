@@ -56,23 +56,23 @@ export default function Home() {
                 <Item title="Fırsat huni durumu">
                   <div className="flex flex-col gap-3">
                     <ProgressBar
-                      percent={60}
+                      percent={80}
                       color="#85B7EB"
                       header={{ title: "Görüşüldü", value: 14 }}
                     />
                     <ProgressBar
-                      percent={60}
-                      color="#85B7EB"
+                      percent={67}
+                      color="#17A2AF"
                       header={{ title: "Teklif verildi", value: 11 }}
                     />
                     <ProgressBar
-                      percent={60}
-                      color="#85B7EB"
+                      percent={50}
+                      color="#0E7C86"
                       header={{ title: "Kazanıldı", value: 9 }}
                     />
                     <ProgressBar
-                      percent={60}
-                      color="#85B7EB"
+                      percent={18}
+                      color="#D7ECEF"
                       header={{ title: "Kaybedildi", value: 3 }}
                     />
                   </div>

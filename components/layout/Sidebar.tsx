@@ -18,7 +18,7 @@ import {
 export default function Sidebar() {
   return (
     <>
-      <div className="max-w-80 min-w-80 bg-white h-screen border-r border-[#D7ECEF] flex flex-col gap-3 px-4 py-6 items-center">
+      <div className="max-w-80 min-w-80 fixed z-10 top-0 bg-white h-screen border-r border-[#D7ECEF] flex flex-col gap-3 px-4 py-6 items-center">
         <div className="w-3/4">
           <Image src={banner} alt="Banner" loading="eager" />
         </div>
