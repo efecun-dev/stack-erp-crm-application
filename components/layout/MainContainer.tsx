@@ -5,7 +5,7 @@ export default function MainContainer({
 }: Readonly<{ children?: React.ReactNode }>) {
   return (
     <>
-      <main className="w-full flex flex-col gap-3 p-5">{children}</main>
+      <main className="w-full flex flex-col gap-8 p-5">{children}</main>
     </>
   );
 }
