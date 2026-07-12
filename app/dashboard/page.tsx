@@ -7,11 +7,26 @@ import Item from "@/components/dashboard/Item";
 import ChartLine from "@/components/charts/line-chart";
 import salesData from "@/components/charts/data/salesData";
 import ProgressBar from "@/components/ui/ProgressBar";
+import Tasks from "@/components/dashboard/Tasks";
+
+const tasks = [
+  { title: "Akın Ticaret'e teklif gönder", completed: false },
+  { title: "Stok sayımını onayla", completed: false },
+  { title: "Haftalık rapor gönder", completed: true },
+  { title: "Yeni personel özlük dosyası oluştur.", completed: false },
+];
+
+const lastSales = [
+  { customer: "Akın Ticaret", amount: 12400, status: "shipping" },
+  { customer: "Mavi İnşaat", amount: 8750, status: "delivered" },
+  { customer: "Yıldız Elektronik", amount: 21200, status: "preparing" },
+  { customer: "Deniz Lojistik", amount: 5300, status: "shipping" },
+];
 
 export default function Home() {
   return (
     <>
-      <main className="w-full min-h-screen overflow-hidden flex items-start">
+      <main className="flex min-h-screen w-full overflow-x-hidden items-start">
         <Sidebar />
         <MainContainer>
           <DashHeader />
@@ -24,7 +39,7 @@ export default function Home() {
                 11 Temmuz 2026 itibarıyla şirket performansı
               </p>
             </div>
-            <div className="flex flex-1 gap-3">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-4">
               <DashInfoBox
                 title="Toplam satış"
                 content="₺284.500"
@@ -46,13 +61,14 @@ export default function Home() {
                 subtitle={{ type: "normal", text: "satın alma talebi" }}
               />
             </div>
-            <div className="flex flex-1 gap-5">
-              <div className="flex-2">
+            <div className="grid grid-cols-1 gap-3 lg:grid-cols-6">
+              <div className="lg:col-span-4 lg:row-span-2">
                 <Item title="Aylık satış trendi">
                   <ChartLine data={salesData} />
                 </Item>
               </div>
-              <div className="flex-1">
+
+              <div className="lg:col-span-2">
                 <Item title="Fırsat huni durumu">
                   <div className="flex flex-col gap-3">
                     <ProgressBar
@@ -75,6 +91,49 @@ export default function Home() {
                       color="#D7ECEF"
                       header={{ title: "Kaybedildi", value: 3 }}
                     />
+                  </div>
+                </Item>
+              </div>
+
+              <div className="lg:col-span-2">
+                <Item title="Bugünkü görevler">
+                  <Tasks data={tasks} />
+                </Item>
+              </div>
+
+              <div className="lg:col-span-6">
+                <Item title="Son siparişler">
+                  <div className="table-wrapper">
+                    <table className="table">
+                      <thead>
+                        <tr>
+                          <th>Müşteri</th>
+                          <th>Tutar</th>
+                          <th>Durum</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {lastSales.map((item, index) => (
+                          <tr key={index}>
+                            <td>{item.customer}</td>
+                            <td>₺{item.amount.toLocaleString()}</td>
+                            <td>
+                              <span
+                                className={`px-2 py-0.5 rounded-xl ${item.status == "shipping" ? "bg-[#E3F6F8] text-[#08525A]" : item.status == "delivered" ? "bg-[#EAF3DE] text-[#27500A]" : item.status == "preparing" ? "bg-[#FAEEDA] text-[#633806]" : ""}`}
+                              >
+                                {item.status == "shipping"
+                                  ? "Kargoda"
+                                  : item.status == "delivered"
+                                    ? "Teslim edildi"
+                                    : item.status == "preparing"
+                                      ? "Hazırlanıyor"
+                                      : ""}
+                              </span>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
                   </div>
                 </Item>
               </div>

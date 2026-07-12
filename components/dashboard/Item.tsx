@@ -6,9 +6,9 @@ type ItemProps = {
 export default function Item({ title, children }: Readonly<ItemProps>) {
   return (
     <div
-      className={`p-5 rounded-xl bg-white border flex flex-col gap-2 border-[#D7ECEF]`}
+      className={`p-5 rounded-xl bg-white border flex flex-col gap-2 border-[#D7ECEF] h-full`}
     >
-      <p className="text-[#0B2E33]">{title}</p>
+      <p className="text-[#0B2E33] font-semibold">{title}</p>
       {children}
     </div>
   );

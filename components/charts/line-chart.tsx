@@ -17,56 +17,81 @@ interface Props {
   }[];
 }
 
-export default function SalesLineChart({ data }: Props) {
+export default function SalesLineChart({ data }: Readonly<Props>) {
   return (
-    <ResponsiveContainer
-      width="100%"
-      height={350}
-      style={{ outline: 0, border: 0, fontSize: 12 }}
-    >
-      <LineChart
-        data={data}
-        margin={{
-          top: 20,
-          right: 20,
-          left: 0,
-          bottom: 0,
-        }}
-      >
-        <CartesianGrid
-          strokeDasharray="3 3"
-          vertical={false}
-          stroke="#17A2AF"
-        />
-
-        <XAxis dataKey="month" tickLine={false} axisLine={false} />
-
-        <YAxis
-          tickFormatter={(value) => `₺${value / 1000}k`}
-          tickLine={false}
-          axisLine={false}
-        />
-
-        <Tooltip
-          formatter={(value) => [
-            `₺${Number(value).toLocaleString("tr-TR")}`,
-            "Satış",
-          ]}
-        />
-
-        <Line
-          type="monotone"
-          dataKey="sales"
-          stroke="#17A2AF"
-          strokeWidth={3}
-          dot={{
-            r: 4,
+    <div className="h-62.5 w-full sm:h-75 lg:h-87.5">
+      <ResponsiveContainer width="100%" height="100%">
+        <LineChart
+          data={data}
+          margin={{
+            top: 10,
+            right: 20,
+            left: -10,
+            bottom: 0,
           }}
-          activeDot={{
-            r: 6,
-          }}
-        />
-      </LineChart>
-    </ResponsiveContainer>
+        >
+          <CartesianGrid
+            stroke="#E5F2F4"
+            strokeDasharray="4 4"
+            vertical={false}
+          />
+
+          <XAxis
+            dataKey="month"
+            axisLine={false}
+            tickLine={false}
+            tick={{
+              fill: "#6B7280",
+              fontSize: 12,
+            }}
+          />
+
+          <YAxis
+            axisLine={false}
+            tickLine={false}
+            tick={{
+              fill: "#6B7280",
+              fontSize: 12,
+            }}
+            tickFormatter={(value) => `₺${value / 1000}k`}
+          />
+
+          <Tooltip
+            cursor={{
+              stroke: "#17A2AF",
+              strokeDasharray: "4 4",
+            }}
+            contentStyle={{
+              borderRadius: 12,
+              border: "1px solid #D7ECEF",
+              boxShadow: "0 8px 24px rgba(0,0,0,.08)",
+            }}
+            formatter={(value) => [
+              `₺${Number(value).toLocaleString("tr-TR")}`,
+              "Satış",
+            ]}
+          />
+
+          <Line
+            dataKey="sales"
+            type="monotone"
+            stroke="#17A2AF"
+            strokeWidth={3}
+            dot={{
+              r: 4,
+              fill: "#17A2AF",
+              stroke: "#fff",
+              strokeWidth: 2,
+            }}
+            activeDot={{
+              r: 6,
+              fill: "#17A2AF",
+              stroke: "#fff",
+              strokeWidth: 3,
+            }}
+          />
+        </LineChart>
+      </ResponsiveContainer>
+    </div>
   );
 }

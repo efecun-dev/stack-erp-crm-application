@@ -133,3 +133,76 @@ body {
     }
   }
 }
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  background: #fff;
+  border: 1px solid #d7ecef;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 800px;
+}
+
+.table thead {
+  background: linear-gradient(180deg, #f8fcfd 0%, #f2f9fa 100%);
+}
+
+.table th {
+  padding: 18px 22px;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 700;
+  color: #0b2e33;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-bottom: 1px solid #d7ecef;
+}
+
+.table td {
+  padding: 15px 18px;
+  font-size: 14px;
+  color: #4b5563;
+  border-bottom: 1px solid #eef5f6;
+  transition: 0.25s;
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.table tbody tr {
+  transition: 0.25s ease;
+}
+
+.table tbody tr:hover {
+  background: #f4fbfc;
+}
+
+.table tbody tr:hover td {
+  color: #0b2e33;
+}
+
+.table td:first-child,
+.table th:first-child {
+  padding-left: 28px;
+}
+
+.table td:last-child,
+.table th:last-child {
+  padding-right: 28px;
+}
+
+.table::-webkit-scrollbar {
+  height: 8px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+  background: #c9e7ea;
+  border-radius: 50px;
+}
