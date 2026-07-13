@@ -19,7 +19,7 @@ export default function Header({ searchPlaceholder }: HeaderProps) {
       </div>
 
       <div className="flex items-center justify-end gap-3">
-        <Button Icon={Bell} type="secondary" />
+        <Button Icon={Bell} variant="secondary" />
 
         <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#D7EFF2] text-sm font-semibold text-[#007582]">
           ME

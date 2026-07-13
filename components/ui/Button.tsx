@@ -1,28 +1,41 @@
+import { ButtonHTMLAttributes } from "react";
 import { LucideIcon } from "lucide-react";
-import { MouseEventHandler } from "react";
 
-type ButtonProps = {
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   children?: React.ReactNode;
   Icon?: LucideIcon;
-  type: "primary" | "secondary";
-  onClick?: MouseEventHandler<HTMLButtonElement>;
+  variant?: "primary" | "secondary";
 };
 
 export default function Button({
   children,
-  type,
   Icon,
-  onClick,
+  variant = "primary",
+  className,
+  ...props
 }: Readonly<ButtonProps>) {
   return (
-    <>
-      <button
-        onClick={onClick}
-        className={`flex items-center gap-2 text-sm justify-center p-2 ${children ? "px-4" : ""} cursor-pointer rounded-xl transition-all duration-100 ${type == "primary" ? "bg-[#0E7C86] text-white hover:bg-[#08525A]" : type == "secondary" ? "bg-[#e9f1f3cc] text-[#007582] shadow-[inset_0px_0px_0px_1px_#008e9f82] hover:bg-[#5fbcc862]" : ""}`}
-      >
-        {Icon && <Icon size={16} />}
-        {children}
-      </button>
-    </>
+    <button
+      {...props}
+      className={`
+        flex items-center justify-center gap-2
+        rounded-xl p-2
+        ${children ? "px-4" : ""}
+        text-sm
+        cursor-pointer
+        transition-all duration-150
+        disabled:cursor-not-allowed
+        disabled:opacity-50
+        ${
+          variant === "primary"
+            ? "bg-[#0E7C86] text-white hover:bg-[#08525A]"
+            : "bg-[#E9F1F3] text-[#007582] shadow-[inset_0_0_0_1px_#008e9f82] hover:bg-[#5fbcc862]"
+        }
+        ${className ?? ""}
+      `}
+    >
+      {Icon && <Icon size={16} />}
+      {children}
+    </button>
   );
 }
