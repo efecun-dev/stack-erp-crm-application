@@ -30,17 +30,17 @@ export default function Table<TData>({ data, columns }: TableProps<TData>) {
   });
 
   return (
-    <div className="overflow-hidden rounded-xl border border-[#D7ECEF]">
+    <div className="overflow-hidden">
       <div className="overflow-x-auto">
         <table className="min-w-100 w-full text-sm">
-          <thead className="bg-[#F5FAFB]">
+          <thead>
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
                   <th
                     key={header.id}
                     onClick={header.column.getToggleSortingHandler()}
-                    className="cursor-pointer select-none px-5 py-4 text-left font-medium text-[#0B2E33] hover:bg-[#EDF7F8] transition"
+                    className="cursor-pointer select-none px-3 py-2 text-left font-light text-xs text-[#8FA8AB] uppercase"
                   >
                     <div className="inline-flex items-center gap-2">
                       <span>
@@ -84,7 +84,7 @@ export default function Table<TData>({ data, columns }: TableProps<TData>) {
                 className="border-t border-[#EAF3F5] transition hover:bg-[#F8FCFD]"
               >
                 {row.getVisibleCells().map((cell) => (
-                  <td key={cell.id} className="px-5 py-4 text-[#456]">
+                  <td key={cell.id} className="px-3 py-3.5 text-[#456]">
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>
                 ))}
