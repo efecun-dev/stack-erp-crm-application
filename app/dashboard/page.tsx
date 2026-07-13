@@ -4,10 +4,27 @@ import MainContainer from "@/components/layout/MainContainer";
 import DashHeader from "@/components/dashboard/DashHeader";
 import DashInfoBox from "@/components/dashboard/DashInfoBox";
 import Item from "@/components/dashboard/Item";
-import ChartLine from "@/components/charts/line-chart";
-import salesData from "@/components/charts/data/salesData";
 import ProgressBar from "@/components/ui/ProgressBar";
 import Tasks from "@/components/dashboard/Tasks";
+import StatusBar from "@/components/dashboard/StatusBar";
+import {
+  createColumnHelper,
+  useReactTable,
+  getCoreRowModel,
+  getSortedRowModel,
+} from "@tanstack/react-table";
+import React from "react";
+import mockData from "@/src/constants/last-sales.json";
+import Table from "@/components/ui/Table";
+import SalesLineChart from "@/components/charts/line-chart";
+const salesData = [
+  { month: "Oca", sales: 12000 },
+  { month: "Şub", sales: 18000 },
+  { month: "Mar", sales: 15000 },
+  { month: "Nis", sales: 23000 },
+];
+
+type LastSale = (typeof mockData)[number];
 
 const tasks = [
   { title: "Akın Ticaret'e teklif gönder", completed: false },
@@ -16,14 +33,31 @@ const tasks = [
   { title: "Yeni personel özlük dosyası oluştur.", completed: false },
 ];
 
-const lastSales = [
-  { customer: "Akın Ticaret", amount: 12400, status: "shipping" },
-  { customer: "Mavi İnşaat", amount: 8750, status: "delivered" },
-  { customer: "Yıldız Elektronik", amount: 21200, status: "preparing" },
-  { customer: "Deniz Lojistik", amount: 5300, status: "shipping" },
+const columnHelper = createColumnHelper<LastSale>();
+const columns = [
+  columnHelper.accessor("customer", {
+    header: "Müşteri",
+    cell: (info) => info.getValue(),
+  }),
+  columnHelper.accessor("amount", {
+    header: "Tutar",
+    cell: (info) => info.getValue(),
+  }),
+  columnHelper.accessor("status", {
+    header: "Durum",
+    cell: (info) => <StatusBar status={info.getValue()} />,
+  }),
 ];
 
 export default function Home() {
+  const [data] = React.useState(() => [...mockData]);
+  const table = useReactTable({
+    data,
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+  });
+
   return (
     <>
       <main className="flex min-h-screen w-full overflow-x-hidden items-start">
@@ -64,7 +98,7 @@ export default function Home() {
             <div className="grid grid-cols-1 gap-3 lg:grid-cols-6">
               <div className="lg:col-span-4 lg:row-span-2">
                 <Item title="Aylık satış trendi">
-                  <ChartLine data={salesData} />
+                  <SalesLineChart data={salesData} />
                 </Item>
               </div>
 
@@ -103,38 +137,7 @@ export default function Home() {
 
               <div className="lg:col-span-6">
                 <Item title="Son siparişler">
-                  <div className="table-wrapper">
-                    <table className="table">
-                      <thead>
-                        <tr>
-                          <th>Müşteri</th>
-                          <th>Tutar</th>
-                          <th>Durum</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {lastSales.map((item, index) => (
-                          <tr key={index}>
-                            <td>{item.customer}</td>
-                            <td>₺{item.amount.toLocaleString()}</td>
-                            <td>
-                              <span
-                                className={`px-2 py-0.5 rounded-xl ${item.status == "shipping" ? "bg-[#E3F6F8] text-[#08525A]" : item.status == "delivered" ? "bg-[#EAF3DE] text-[#27500A]" : item.status == "preparing" ? "bg-[#FAEEDA] text-[#633806]" : ""}`}
-                              >
-                                {item.status == "shipping"
-                                  ? "Kargoda"
-                                  : item.status == "delivered"
-                                    ? "Teslim edildi"
-                                    : item.status == "preparing"
-                                      ? "Hazırlanıyor"
-                                      : ""}
-                              </span>
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
+                  <Table data={data} columns={columns} />
                 </Item>
               </div>
             </div>

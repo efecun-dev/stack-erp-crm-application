@@ -1,0 +1,22 @@
+[
+  {
+    "customer": "Akın Ticaret",
+    "amount": 12400,
+    "status": "shipping"
+  },
+  {
+    "customer": "Mavi İnşaat",
+    "amount": 8750,
+    "status": "delivered"
+  },
+  {
+    "customer": "Yıldız Elektronik",
+    "amount": 21200,
+    "status": "preparing"
+  },
+  {
+    "customer": "Deniz Lojistik",
+    "amount": 5300,
+    "status": "shipping"
+  }
+]

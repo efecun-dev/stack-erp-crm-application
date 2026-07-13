@@ -1,10 +1,8 @@
 const salesData = [
-  { month: "Ocak", sales: 12000 },
-  { month: "Şubat", sales: 18500 },
-  { month: "Mart", sales: 16200 },
-  { month: "Nisan", sales: 22300 },
-  { month: "Mayıs", sales: 19800 },
-  { month: "Haziran", sales: 25600 },
+  { month: "Oca", sales: 12000 },
+  { month: "Şub", sales: 18000 },
+  { month: "Mar", sales: 15000 },
+  { month: "Nis", sales: 23000 },
 ];
 
-export default salesData;
+export default salesData
