@@ -17,7 +17,11 @@ import {
   LogOut,
 } from "lucide-react";
 
-export default function Sidebar() {
+type SidebarProps = {
+  active: string;
+};
+
+export default function Sidebar({ active }: SidebarProps) {
   return (
     <aside className="fixed top-0 left-0 z-20 flex h-screen w-20 flex-col items-center border-r border-[#D7ECEF] bg-white px-3 py-6 transition-all lg:w-80 lg:px-4">
       {/* Logo */}
@@ -43,20 +47,65 @@ export default function Sidebar() {
 
       {/* Menü */}
       <div className="flex w-full flex-col gap-2">
-        <SidebarLink title="Dashboard" Icon={LayoutDashboard} isActive />
-        <SidebarLink title="CRM" Icon={Users} />
-        <SidebarLink title="Satışlar" Icon={ShoppingCart} />
-        <SidebarLink title="Stok" Icon={Box} />
-        <SidebarLink title="Finans" Icon={Receipt} />
-        <SidebarLink title="İnsan Kaynakları" Icon={IdCardLanyard} />
-        <SidebarLink title="Satın Alma" Icon={HandCoins} />
-        <SidebarLink title="Raporlar" Icon={NotepadText} />
+        <SidebarLink
+          href="/dashboard"
+          title="Dashboard"
+          Icon={LayoutDashboard}
+          isActive={active == "dashboard"}
+        />
+        <SidebarLink
+          href="/crm"
+          title="CRM"
+          Icon={Users}
+          isActive={active == "crm"}
+        />
+        <SidebarLink
+          href="/sales"
+          title="Satışlar"
+          Icon={ShoppingCart}
+          isActive={active == "sales"}
+        />
+        <SidebarLink
+          href="/stock"
+          title="Stok"
+          Icon={Box}
+          isActive={active == "stock"}
+        />
+        <SidebarLink
+          href="/finance"
+          title="Finans"
+          Icon={Receipt}
+          isActive={active == "finance"}
+        />
+        <SidebarLink
+          href="/human-resources"
+          title="İnsan Kaynakları"
+          Icon={IdCardLanyard}
+          isActive={active == "hr"}
+        />
+        <SidebarLink
+          href="buying"
+          title="Satın Alma"
+          Icon={HandCoins}
+          isActive={active == "buying"}
+        />
+        <SidebarLink
+          href="reports"
+          title="Raporlar"
+          Icon={NotepadText}
+          isActive={active == "reports"}
+        />
       </div>
 
       {/* Alt Menü */}
       <div className="mt-auto flex w-full flex-col gap-2">
-        <SidebarLink title="Ayarlar" Icon={Settings} />
-        <SidebarLink title="Çıkış Yap" Icon={LogOut} />
+        <SidebarLink
+          href="/settings"
+          title="Ayarlar"
+          Icon={Settings}
+          isActive={active == "settings"}
+        />
+        <SidebarLink href="/logout" title="Çıkış Yap" Icon={LogOut} />
       </div>
     </aside>
   );

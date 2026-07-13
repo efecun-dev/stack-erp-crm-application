@@ -1,7 +1,7 @@
 "use client";
 import Sidebar from "@/components/layout/Sidebar";
 import MainContainer from "@/components/layout/MainContainer";
-import DashHeader from "@/components/dashboard/DashHeader";
+import Header from "@/components/layout/Header";
 import DashInfoBox from "@/components/dashboard/DashInfoBox";
 import Item from "@/components/dashboard/Item";
 import ProgressBar from "@/components/ui/ProgressBar";
@@ -65,9 +65,9 @@ export default function Home() {
   return (
     <>
       <main className="flex min-h-screen w-full overflow-x-hidden items-start">
-        <Sidebar />
+        <Sidebar active="dashboard" />
         <MainContainer>
-          <DashHeader />
+          <Header searchPlaceholder="Müşteri, sipariş, ürün ara..." />
           <div className="flex flex-col gap-5 w-full flex-1">
             <div className="flex-1 flex flex-col">
               <h3 className="text-2xl font-semibold text-[#0B2E33]">
