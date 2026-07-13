@@ -16,7 +16,11 @@ import {
 import React from "react";
 import mockData from "@/src/constants/last-sales.json";
 import Table from "@/components/ui/Table";
-import SalesLineChart from "@/components/charts/line-chart";
+import dynamic from "next/dynamic";
+
+const SalesLineChart = dynamic(() => import("@/components/charts/line-chart"), {
+  ssr: false,
+});
 const salesData = [
   { month: "Oca", sales: 12000 },
   { month: "Şub", sales: 18000 },
@@ -41,7 +45,7 @@ const columns = [
   }),
   columnHelper.accessor("amount", {
     header: "Tutar",
-    cell: (info) => info.getValue(),
+    cell: (info) => `₺${info.getValue().toLocaleString()}`,
   }),
   columnHelper.accessor("status", {
     header: "Durum",

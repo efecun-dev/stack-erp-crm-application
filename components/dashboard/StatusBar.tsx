@@ -6,7 +6,7 @@ export default function StatusBar({ status }: BarProps) {
   return (
     <>
       <span
-        className={`px-2 py-1 text-xs rounded-xl font-semibold ${
+        className={`px-2 py-1 text-xs rounded-xl font-semibold text-nowrap ${
           status == "shipping"
             ? "bg-[#E3F6F8] text-[#08525A]"
             : status == "delivered"

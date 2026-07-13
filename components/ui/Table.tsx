@@ -32,7 +32,7 @@ export default function Table<TData>({ data, columns }: TableProps<TData>) {
   return (
     <div className="overflow-hidden rounded-xl border border-[#D7ECEF]">
       <div className="overflow-x-auto">
-        <table className="min-w-175 w-full text-sm">
+        <table className="min-w-100 w-full text-sm">
           <thead className="bg-[#F5FAFB]">
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
