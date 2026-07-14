@@ -15,9 +15,51 @@ import {
 import FormInput from "@/components/form/FormInput";
 import FormCombobox from "@/components/form/FormCombobox";
 import FormTextarea from "@/components/form/FormTextArea";
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { createColumnHelper } from "@tanstack/react-table";
+import mockData from "@/src/constants/customers.json";
+import CustomerStatus from "@/components/crm/CustomerStatus";
+import DataTable from "@/components/ui/Table/DataTable";
+
+import type { Customer } from "@/src/types/customers";
+
+const columnHelper = createColumnHelper<Customer>();
+const columns = [
+  columnHelper.accessor("customer", {
+    header: "Müşteri",
+    cell: (info) => (
+      <div className="flex flex-col gap-0">
+        <p>{info.getValue().name}</p>
+        <p className="text-xs text-gray-500 font-light">
+          {info.getValue().email}
+        </p>
+      </div>
+    ),
+  }),
+  columnHelper.accessor("sector", {
+    header: "Sektör",
+    cell: (info) => info.getValue(),
+  }),
+  columnHelper.accessor("status", {
+    header: "Durum",
+    cell: (info) => <CustomerStatus status={info.getValue()} />,
+  }),
+  columnHelper.accessor("owner", {
+    header: "Sorumlu",
+    cell: (info) => info.getValue(),
+  }),
+  columnHelper.accessor("lastContact", {
+    header: "Son İletişim",
+    cell: (info) => info.getValue(),
+  }),
+  columnHelper.accessor("amount", {
+    header: "Tutar",
+    cell: (info) => `₺${info.getValue().toLocaleString()}`,
+  }),
+];
 
 export default function CRM() {
+  const data = useMemo(() => mockData, []);
   const form = useForm<CustomerFormData>({
     resolver: zodResolver(customerSchema),
     defaultValues: {
@@ -57,6 +99,7 @@ export default function CRM() {
   };
 
   const [customerModal, setCustomerModal] = useState(false);
+  const [tab, setTab] = useState("customers");
 
   return (
     <>
@@ -75,6 +118,41 @@ export default function CRM() {
               Yeni müşteri
             </Button>
           </div>
+          <div className="bg-white p-1.5 border border-[#D7ECEF] rounded-xl items-center flex gap-1 w-fit">
+            <div
+              onClick={() => setTab("customers")}
+              className={`py-1 px-3 text-[#5C7C80] text-sm cursor-pointer rounded-md transition ${tab == "customers" ? "text-[#08525A] bg-[#E3F6F8]" : ""}`}
+            >
+              Müşteriler
+            </div>
+            <div
+              onClick={() => setTab("pipeline")}
+              className={`py-1 px-3 text-[#5C7C80] text-sm cursor-pointer rounded-md transition ${tab == "pipeline" ? "text-[#08525A] bg-[#E3F6F8]" : ""}`}
+            >
+              Fırsat Pipeline
+            </div>
+          </div>
+          {tab == "customers" ? (
+            <div className="flex flex-col gap-3">
+              <Item>
+                <div className="flex w-full justify-between items-center">
+                  <div className="flex items-center gap-2">
+                    <Button variant="secondary">Sektör: Tümü</Button>
+                    <Button variant="secondary">Durum: Tümü</Button>
+                    <Button variant="secondary">Bölge: Tümü</Button>
+                  </div>
+                  <p className="text-xs mr-2 text-gray-400 flex items-center">
+                    128 Müşteri
+                  </p>
+                </div>
+              </Item>
+              <Item>
+                <DataTable data={data} columns={columns} />
+              </Item>
+            </div>
+          ) : (
+            ""
+          )}
           <Modal
             active={customerModal}
             onClose={() => setCustomerModal(false)}

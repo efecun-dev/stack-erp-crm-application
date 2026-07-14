@@ -29,7 +29,7 @@ export default function Button({
         ${
           variant === "primary"
             ? "bg-[#0E7C86] text-white hover:bg-[#08525A]"
-            : "bg-[#E9F1F3] text-[#007582] shadow-[inset_0_0_0_1px_#008e9f82] hover:bg-[#5fbcc862]"
+            : "bg-[#F4FAFB] text-[#5C7C80] border border-[#D7ECEF] hover:bg-[#edf6f7]"
         }
         ${className ?? ""}
       `}

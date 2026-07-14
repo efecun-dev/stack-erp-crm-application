@@ -7,15 +7,10 @@ import Item from "@/components/dashboard/Item";
 import ProgressBar from "@/components/ui/ProgressBar";
 import Tasks from "@/components/dashboard/Tasks";
 import StatusBar from "@/components/dashboard/StatusBar";
-import {
-  createColumnHelper,
-  useReactTable,
-  getCoreRowModel,
-  getSortedRowModel,
-} from "@tanstack/react-table";
+import { createColumnHelper } from "@tanstack/react-table";
 import React from "react";
 import mockData from "@/src/constants/last-sales.json";
-import Table from "@/components/ui/Table";
+import DataTable from "@/components/ui/Table/DataTable";
 import dynamic from "next/dynamic";
 
 const SalesLineChart = dynamic(() => import("@/components/charts/line-chart"), {
@@ -28,7 +23,7 @@ const salesData = [
   { month: "Nis", sales: 23000 },
 ];
 
-type LastSale = (typeof mockData)[number];
+import type { LastSales } from "@/src/types/last-sales";
 
 const tasks = [
   { title: "Akın Ticaret'e teklif gönder", completed: false },
@@ -37,7 +32,7 @@ const tasks = [
   { title: "Yeni personel özlük dosyası oluştur.", completed: false },
 ];
 
-const columnHelper = createColumnHelper<LastSale>();
+const columnHelper = createColumnHelper<LastSales>();
 const columns = [
   columnHelper.accessor("customer", {
     header: "Müşteri",
@@ -55,12 +50,6 @@ const columns = [
 
 export default function Home() {
   const [data] = React.useState(() => [...mockData]);
-  const table = useReactTable({
-    data,
-    columns,
-    getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel(),
-  });
 
   return (
     <>
@@ -141,7 +130,7 @@ export default function Home() {
 
               <div className="lg:col-span-6">
                 <Item title="Son siparişler">
-                  <Table data={data} columns={columns} />
+                  <DataTable data={data} columns={columns} />
                 </Item>
               </div>
             </div>
