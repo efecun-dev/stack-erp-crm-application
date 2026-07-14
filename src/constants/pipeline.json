@@ -1,0 +1,44 @@
+[
+  {
+    "title": "Depo yönetim sistemi",
+    "company": "Deniz Lojistik",
+    "amount": 31200,
+    "owner": "Can Tekin",
+    "status": "discuss"
+  },
+  {
+    "title": "Yıllık bakım anlaşması",
+    "company": "Sarı Gıda A.Ş.",
+    "amount": 18000,
+    "owner": "Burak Serin",
+    "status": "discuss"
+  },
+  {
+    "title": "ERP Lisans yenileme",
+    "company": "Mavi İnşaat",
+    "amount": 68500,
+    "owner": "Burak Serin",
+    "status": "offered"
+  },
+  {
+    "title": "Elektronik bileşen tedariki",
+    "company": "Yıldız Elektronik",
+    "amount": 96000,
+    "owner": "Emirhan Keskin",
+    "status": "offered"
+  },
+  {
+    "title": "Toplu sipariş anlaşması",
+    "company": "Akın Ticaret",
+    "amount": 142000,
+    "owner": "Emirhan Keskin",
+    "status": "won"
+  },
+  {
+    "title": "Kısa dönem tedarik",
+    "company": "Sarı Gıda A.Ş.",
+    "amount": 23000,
+    "owner": "Burak Serin",
+    "status": "lost"
+  }
+]

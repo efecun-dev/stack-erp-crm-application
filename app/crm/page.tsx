@@ -22,6 +22,9 @@ import CustomerStatus from "@/components/crm/CustomerStatus";
 import DataTable from "@/components/ui/Table/DataTable";
 
 import type { Customer } from "@/src/types/customers";
+import PipelineCard from "@/components/crm/PipelineCard";
+
+import pipelineData from "@/src/constants/pipeline.json";
 
 const columnHelper = createColumnHelper<Customer>();
 const columns = [
@@ -94,10 +97,6 @@ export default function CRM() {
     { label: "Kaybedildi", value: "lost" },
   ];
 
-  const onSubmit = (data: CustomerFormData) => {
-    console.log(data);
-  };
-
   const [customerModal, setCustomerModal] = useState(false);
   const [tab, setTab] = useState("customers");
 
@@ -153,6 +152,53 @@ export default function CRM() {
           ) : (
             ""
           )}
+          {tab == "pipeline" ? (
+            <div className="flex flex-col gap-3">
+              <Item>
+                <div className="flex w-full justify-between items-center">
+                  <div className="flex items-center gap-2">
+                    <Button variant="secondary">Sorumlu: Tümü</Button>
+                    <Button variant="secondary">Kapanış: Bu çeyrek</Button>
+                  </div>
+                  <p className="text-xs mr-2 text-gray-400 flex items-center">
+                    Toplam: ₺612.000 - 37 fırsat
+                  </p>
+                </div>
+              </Item>
+              <div className="grid grid-cols-4 gap-3 max-xl:grid-cols-2 max-sm:grid-cols-1">
+                <PipelineCard
+                  status="discuss"
+                  total={14}
+                  amount={186000}
+                  data={pipelineData.filter(
+                    (item) => item.status === "discuss",
+                  )}
+                />
+                <PipelineCard
+                  status="offered"
+                  total={11}
+                  amount={224500}
+                  data={pipelineData.filter(
+                    (item) => item.status === "offered",
+                  )}
+                />
+                <PipelineCard
+                  status="won"
+                  total={9}
+                  amount={178500}
+                  data={pipelineData.filter((item) => item.status === "won")}
+                />
+                <PipelineCard
+                  status="lost"
+                  total={3}
+                  amount={23000}
+                  data={pipelineData.filter((item) => item.status === "lost")}
+                />
+              </div>
+            </div>
+          ) : (
+            ""
+          )}
           <Modal
             active={customerModal}
             onClose={() => setCustomerModal(false)}
@@ -164,11 +210,7 @@ export default function CRM() {
             }}
             footer={{ cancel: "Vazgeç", cta: "Müşteriyi Kaydet" }}
           >
-            <form
-              id="customer-form"
-              onSubmit={form.handleSubmit(onSubmit)}
-              className="space-y-5"
-            >
+            <form id="customer-form" className="space-y-5">
               <FormInput
                 control={form.control}
                 name="companyName"
