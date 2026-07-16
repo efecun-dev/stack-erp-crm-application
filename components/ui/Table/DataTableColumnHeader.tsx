@@ -5,10 +5,12 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 
 interface Props<TData, TValue> {
   header: Header<TData, TValue>;
+  sortable?: boolean;
 }
 
 export default function DataTableColumnHeader<TData, TValue>({
   header,
+  sortable,
 }: Props<TData, TValue>) {
   return (
     <div
@@ -17,7 +19,7 @@ export default function DataTableColumnHeader<TData, TValue>({
     >
       {header.isPlaceholder ? null : header.column.columnDef.header?.toString()}
 
-      {header.column.getCanSort() && (
+      {sortable && header.column.getCanSort() && (
         <div className="-space-y-1 flex flex-col">
           <ChevronUp
             size={12}

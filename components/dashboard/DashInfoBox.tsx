@@ -1,7 +1,7 @@
 type BoxProps = {
   title: string;
   content: string;
-  subtitle: {
+  subtitle?: {
     type: "success" | "danger" | "normal";
     text: string;
   };
@@ -18,17 +18,19 @@ export default function DashInfoBox({
 
       <h4 className="mt-1 text-3xl font-semibold text-[#0B2E33]">{content}</h4>
 
-      <p
-        className={`text-sm font-light ${
-          subtitle.type === "success"
-            ? "text-green-700"
-            : subtitle.type === "danger"
-              ? "text-red-500"
-              : "text-gray-400"
-        }`}
-      >
-        {subtitle.text}
-      </p>
+      {subtitle && (
+        <p
+          className={`text-sm font-light ${
+            subtitle.type === "success"
+              ? "text-green-700"
+              : subtitle.type === "danger"
+                ? "text-red-500"
+                : "text-gray-400"
+          }`}
+        >
+          {subtitle.text}
+        </p>
+      )}
     </div>
   );
 }

@@ -10,8 +10,9 @@ type FormInputProps<T extends FieldValues> = {
   name: FieldPath<T>;
 
   label?: string;
-  type?: "text" | "password" | "email" | "tel" | "date";
+  type?: "text" | "password" | "email" | "tel" | "date" | "number";
   placeholder?: string;
+  small?: boolean;
   Icon?: LucideIcon;
 };
 
@@ -20,6 +21,7 @@ export default function FormInput<T extends FieldValues>({
   name,
   label,
   type = "text",
+  small,
   placeholder,
   Icon,
 }: FormInputProps<T>) {
@@ -30,6 +32,7 @@ export default function FormInput<T extends FieldValues>({
       render={({ field, fieldState }) => (
         <Input
           {...field}
+          small={small}
           id={name}
           type={type}
           label={label}

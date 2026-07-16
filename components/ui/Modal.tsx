@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Button from "./Button";
 
 interface ModalProps {
@@ -34,7 +33,7 @@ export default function Modal({
       <div
         className={`z-20 fixed inset-0 top-0 left-0 w-full h-screen bg-black/40 items-center justify-center ${active ? "flex" : "hidden"} flex-col`}
       >
-        <div className="bg-white shadow-lg rounded-xl relative max-h-[90vh] overflow-y-auto">
+        <div className="bg-white shadow-lg rounded-xl relative max-h-[90vh] overflow-y-auto max-w-200">
           {/* HEADER */}
           <div className="flex flex-col gap-1 p-5">
             <h4 className="text-[#0B2E33]">{header.title}</h4>

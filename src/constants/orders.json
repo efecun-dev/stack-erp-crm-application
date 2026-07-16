@@ -1,0 +1,22 @@
+[
+  {
+    "id": "#ORD-1001",
+    "customer": "Ahmet Yılmaz",
+    "date": "15.07.2026",
+    "total": 3,
+    "price": 4500,
+    "status": "preparing",
+    "items": [
+      {
+        "product": "ERP Lisansı",
+        "quantity": 2,
+        "unitPrice": 1500
+      },
+      {
+        "product": "Hosting",
+        "quantity": 1,
+        "unitPrice": 1500
+      }
+    ]
+  }
+]

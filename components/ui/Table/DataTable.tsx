@@ -1,16 +1,16 @@
 "use client";
 
+import React from "react";
 import {
   ColumnDef,
-  SortingState,
   PaginationState,
+  SortingState,
   flexRender,
   getCoreRowModel,
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import React from "react";
 
 import DataTablePagination from "./DataTablePagination";
 import DataTableEmpty from "./DataTableEmpty";
@@ -19,18 +19,43 @@ import DataTableColumnHeader from "./DataTableColumnHeader";
 interface DataTableProps<TData> {
   data: TData[];
   columns: ColumnDef<TData, any>[];
+
+  pagination?: boolean;
+  sortable?: boolean;
+  expandable?: boolean;
+
+  renderExpandedRow?: (row: TData) => React.ReactNode;
 }
 
 export default function DataTable<TData>({
   data,
   columns,
+  pagination = false,
+  sortable = false,
+  expandable = false,
+  renderExpandedRow,
 }: DataTableProps<TData>) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
 
-  const [pagination, setPagination] = React.useState<PaginationState>({
-    pageIndex: 0,
-    pageSize: 10,
-  });
+  const [paginationState, setPaginationState] = React.useState<PaginationState>(
+    {
+      pageIndex: 0,
+      pageSize: 10,
+    },
+  );
+
+  const [expandedRows, setExpandedRows] = React.useState<
+    Record<string, boolean>
+  >({});
+
+  const toggleRow = (rowId: string) => {
+    if (!expandable) return;
+
+    setExpandedRows((prev) => ({
+      ...prev,
+      [rowId]: !prev[rowId],
+    }));
+  };
 
   const table = useReactTable({
     data,
@@ -38,15 +63,15 @@ export default function DataTable<TData>({
 
     state: {
       sorting,
-      pagination,
+      pagination: paginationState,
     },
 
-    onSortingChange: setSorting,
-    onPaginationChange: setPagination,
+    onSortingChange: sortable ? setSorting : undefined,
+    onPaginationChange: pagination ? setPaginationState : undefined,
 
     getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
+    getSortedRowModel: sortable ? getSortedRowModel() : undefined,
+    getPaginationRowModel: pagination ? getPaginationRowModel() : undefined,
   });
 
   return (
@@ -58,7 +83,10 @@ export default function DataTable<TData>({
               <tr key={group.id}>
                 {group.headers.map((header) => (
                   <th key={header.id} className="px-4 py-3 text-left">
-                    <DataTableColumnHeader header={header} />
+                    <DataTableColumnHeader
+                      sortable={sortable}
+                      header={header}
+                    />
                   </th>
                 ))}
               </tr>
@@ -70,23 +98,44 @@ export default function DataTable<TData>({
               <DataTableEmpty colSpan={columns.length} />
             ) : (
               table.getRowModel().rows.map((row) => (
-                <tr key={row.id} className="border-t border-[#EAF3F5]">
-                  {row.getVisibleCells().map((cell) => (
-                    <td key={cell.id} className="px-4 py-4">
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext(),
-                      )}
-                    </td>
-                  ))}
-                </tr>
+                <React.Fragment key={row.id}>
+                  <tr
+                    className={`border-t border-[#EAF3F5] transition ${
+                      expandable ? "cursor-pointer hover:bg-[#F4FAFB]" : ""
+                    }`}
+                    onClick={() => toggleRow(row.id)}
+                  >
+                    {row.getVisibleCells().map((cell) => (
+                      <td
+                        key={cell.id}
+                        className="px-4 py-4 text-sm text-gray-700"
+                      >
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext(),
+                        )}
+                      </td>
+                    ))}
+                  </tr>
+
+                  {expandable && expandedRows[row.id] && renderExpandedRow && (
+                    <tr className="bg-[#F8FCFD]">
+                      <td
+                        colSpan={row.getVisibleCells().length}
+                        className="p-0"
+                      >
+                        {renderExpandedRow(row.original)}
+                      </td>
+                    </tr>
+                  )}
+                </React.Fragment>
               ))
             )}
           </tbody>
         </table>
       </div>
 
-      <DataTablePagination table={table} />
+      {pagination && <DataTablePagination table={table} />}
     </>
   );
 }

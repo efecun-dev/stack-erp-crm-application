@@ -5,6 +5,7 @@ type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   label?: string;
   error?: string;
   Icon?: LucideIcon;
+  small?: boolean;
 };
 
 export default function Input({
@@ -12,6 +13,7 @@ export default function Input({
   error,
   Icon,
   className,
+  small,
   ...props
 }: InputProps) {
   return (
@@ -39,6 +41,7 @@ export default function Input({
             w-full rounded-lg border bg-[#F4FAFB]
             py-2 text-sm text-[#0B2E33]
             outline-none transition
+            ${small && "py-0.5!"}
             ${Icon ? "pl-9 pr-4" : "px-4"}
             ${
               error
