@@ -1,0 +1,32 @@
+[
+  {
+    "current": {
+      "name": "Akın Ticaret",
+      "type": "Müşteri"
+    },
+    "income": 142000,
+    "expense": 18500,
+    "waiting": 123500,
+    "status": "paid",
+    "items": [
+      {
+        "date": "01/07/2026",
+        "description": "Toplu sipariş anlaşması",
+        "type": "income",
+        "amount": 95000
+      },
+      {
+        "date": "08/07/2026",
+        "description": "Ek ürün satışı",
+        "type": "income",
+        "amount": 47000
+      },
+      {
+        "date": "12/07/2026",
+        "description": "İade kesintisi",
+        "type": "expense",
+        "amount": 18500
+      }
+    ]
+  }
+]

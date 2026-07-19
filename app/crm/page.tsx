@@ -146,7 +146,7 @@ export default function CRM() {
                 </div>
               </Item>
               <Item>
-                <DataTable data={data} columns={columns} />
+                <DataTable pagination data={data} columns={columns} />
               </Item>
             </div>
           ) : (

@@ -1,0 +1,29 @@
+[
+  {
+    "type": "income",
+    "date": "14/07/2026",
+    "description": "Depo yönetim sistemi kurulumu",
+    "category": { "id": 2, "label": "Hizmet Geliri" },
+    "current": "Deniz Lojistik",
+    "amount": 31200,
+    "status": "waiting"
+  },
+  {
+    "type": "expense",
+    "date": "12/07/2026",
+    "description": "2. çeyrek KDV ödemesi",
+    "category": { "id": 7, "label": "Vergi" },
+    "current": "Gelir İdaresi",
+    "amount": 27400,
+    "status": "paid"
+  },
+  {
+    "type": "income",
+    "date": "10/07/2026",
+    "description": "Elektronik bileşen tedariki",
+    "category": { "id": 1, "label": "Satış Geliri" },
+    "current": "Yıldız Elektronik",
+    "amount": 96000,
+    "status": "waiting"
+  }
+]

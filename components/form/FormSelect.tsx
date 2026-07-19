@@ -6,7 +6,7 @@ import Select from "../ui/Select";
 
 type Option = {
   label: string;
-  value: string;
+  value: any;
 };
 
 type FormSelectProps<T extends FieldValues> = {

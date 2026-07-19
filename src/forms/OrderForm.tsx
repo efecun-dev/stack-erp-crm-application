@@ -75,6 +75,7 @@ export default function OrderForm({ id, form, onSubmit }: Props) {
                 control={control}
                 name={`items.${index}.quantity`}
                 type="number"
+                placeholder="Adet"
               />
             </div>
 
@@ -83,6 +84,7 @@ export default function OrderForm({ id, form, onSubmit }: Props) {
                 control={control}
                 name={`items.${index}.unitPrice`}
                 type="number"
+                placeholder="Fiyat (₺)"
               />
             </div>
 
