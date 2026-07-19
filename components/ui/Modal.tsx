@@ -31,9 +31,9 @@ export default function Modal({
   return (
     <>
       <div
-        className={`z-20 fixed inset-0 top-0 left-0 w-full h-screen bg-black/40 items-center justify-center ${active ? "flex" : "hidden"} flex-col`}
+        className={`z-20 fixed inset-0 top-0 left-0 w-full h-screen bg-[rgba(11,46,51,0.45)] items-center justify-center ${active ? "flex" : "hidden"} flex-col`}
       >
-        <div className="bg-white shadow-lg rounded-xl relative max-h-[90vh] overflow-y-auto max-w-200">
+        <div className="bg-white shadow-lg rounded-xl relative max-h-[90vh] overflow-y-auto min-w-150 max-w-200">
           {/* HEADER */}
           <div className="flex flex-col gap-1 p-5">
             <h4 className="text-[#0B2E33]">{header.title}</h4>

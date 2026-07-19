@@ -1,0 +1,26 @@
+[
+  {
+    "product": { "name": "Kablosuz Mouse", "sku": "SKU-10231" },
+    "category": { "id": "hardware", "label": "Donanım" },
+    "storage": { "id": "center", "label": "Merkez Depo" },
+    "stock": { "current": 100, "min": 15 },
+    "unitPrice": 320,
+    "totalValue": 13440,
+    "items": [
+      {
+        "date": "2026-07-08",
+        "type": "out",
+        "amount": 8,
+        "user": "Can T.",
+        "note": "Satış siparişi SIP-1038"
+      },
+      {
+        "date": "2026-07-01",
+        "type": "in",
+        "amount": 50,
+        "user": "Elif K.",
+        "note": "İlk stok girişi"
+      }
+    ]
+  }
+]

@@ -5,7 +5,6 @@ import { Trash2, Plus } from "lucide-react";
 
 import Button from "@/components/ui/Button";
 import FormInput from "@/components/form/FormInput";
-import FormSelect from "@/components/form/FormSelect";
 import FormCombobox from "@/components/form/FormCombobox";
 
 import { OrderFormData } from "@/src/schemas/order.schema";

@@ -37,7 +37,7 @@ export default function DataTablePagination<TData>({ table }: Props<TData>) {
           <select
             value={pageSize}
             onChange={(e) => table.setPageSize(Number(e.target.value))}
-            className="rounded-lg border border-[#D7ECEF] bg-white px-3 py-2 text-sm outline-none"
+            className="rounded-lg border border-[#D7ECEF] bg-white px-3 pr-10 py-2 text-sm outline-none"
           >
             {[10, 25, 50, 100].map((size) => (
               <option key={size} value={size}>

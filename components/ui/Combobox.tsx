@@ -14,11 +14,11 @@ import { useMemo, useState } from "react";
 
 export type ComboboxOption = {
   label: string;
-  value: string;
+  value: any;
 };
 
 type ComboboxProps = {
-  value?: string;
+  value?: any;
   onChange?: (value: string) => void;
 
   label?: string;
@@ -56,7 +56,7 @@ export default function Combobox({
           <button
             type="button"
             className={`
-              flex h-10 w-full items-center justify-between
+              flex h-10 w-full min-w-40 items-center justify-between
               rounded-lg border bg-[#F4FAFB]
               px-4 text-sm text-[#0B2E33]
               transition
