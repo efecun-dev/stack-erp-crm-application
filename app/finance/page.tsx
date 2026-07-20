@@ -129,14 +129,18 @@ export default function Finance() {
 
       const balanceValue = item.income - item.expense;
 
+      const searchMatch =
+        filterSearch.trim() === "" ||
+        item.current.name.toLowerCase().includes(filterSearch.toLowerCase());
+
       const balanceMatch =
         balance === "all" ||
         (balance === "positive" && balanceValue > 0) ||
         (balance === "negative" && balanceValue < 0);
 
-      return currentMatch && balanceMatch;
+      return currentMatch && balanceMatch && searchMatch;
     });
-  }, [accountData, accountType, balance]);
+  }, [accountData, accountType, balance, filterSearch]);
 
   const accsColHelper = createColumnHelper<Accounts>();
   const accsColumns = [
