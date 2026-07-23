@@ -84,13 +84,13 @@ export default function Sidebar({ active }: SidebarProps) {
           isActive={active == "hr"}
         />
         <SidebarLink
-          href="buying"
+          href="/purchase"
           title="Satın Alma"
           Icon={HandCoins}
           isActive={active == "buying"}
         />
         <SidebarLink
-          href="reports"
+          href="/reports"
           title="Raporlar"
           Icon={NotepadText}
           isActive={active == "reports"}

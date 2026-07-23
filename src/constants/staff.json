@@ -1,0 +1,24 @@
+[
+  {
+    "staff": {
+      "name": "Efe Cün",
+      "position": "Yazılım Mühendisi",
+      "email": "efe@efecun.dev"
+    },
+    "department": "Yazılım",
+    "startDate": "19/12/2022",
+    "status": "active",
+    "items": [
+      {
+        "type": "Yıllık İzin",
+        "dates": { "start": "25/07/2026", "end": "26/07/2026" },
+        "status": "approved"
+      },
+      {
+        "type": "Mazeret İzni",
+        "dates": { "start": "20/07/2026", "end": "25/07/2026" },
+        "status": "declined"
+      }
+    ]
+  }
+]

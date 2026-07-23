@@ -20,7 +20,7 @@ import { useForm } from "react-hook-form";
 import financeMockData from "@/src/constants/finance.json";
 import accsMockData from "@/src/constants/accounts.json";
 import { AccountItem, Accounts } from "@/src/types/accounts";
-import AccountDetailsTable from "./OrderProductsTable";
+import AccountDetailsTable from "./OrderAccountsTable";
 
 export default function Finance() {
   const [financeModal, setFinanceModal] = useState(false);
@@ -274,6 +274,7 @@ export default function Finance() {
               <Item>
                 <DataTable
                   pagination
+                  sortable
                   data={filteredFinanceData}
                   columns={financeColumns}
                 />
